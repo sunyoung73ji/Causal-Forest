@@ -1,0 +1,214 @@
+State-Year Paternities & Births Data :
+
+hosp_pat = years relative to IHVPE initiation (main definition)
+any_hosp_pat = IHVPE exists in state and year (main definition)
+hosp_pat2 =  years relative to IHVPE initiation (using only information on year of initiation, not month)
+any_hosp_pat2 = IHVPE exists in state and year (using only information on year of initiation, not month)
+frac_hosppat = fraction of the year that IHVPE has existed in each state and year
+year_init = year of IHVPE initiation
+goodinfo = indicator for a state with good information on IHVPE initiation (see text for details)
+numpat = number of paternities established in state/year
+pct_pat = ratio of paternities established to total number of unmarried births in state/year
+pat_allbirths = ratio of paternities established to total number of births in state/year
+log_pat = log number of paternities established
+year = year of observation
+state = state FIPS
+d_state* = set of dummies for state FIPS
+tt = linear time trend
+tt2 = quadratic time trend
+N = total number births
+unmar_births = total number unmarried births
+momage1 = share of mothers aged <20
+momage2 = share of mothers aged 20-24
+momage3 = share of mothers aged 25-34
+momage4 = share of mothers aged 35-44
+momage5 = share of mothers aged 45+
+momeduc1 = share of mothers with < high school education
+momeduc2 = share of mothers with high school degree
+momeduc3 = share of mothers with some college
+momeduc4 = share of mothers with college+
+momnonhispanicwhite = share of mothers who are non-Hispanic white
+momblack = share of mothers who are non-Hispanic black
+momhispanic = share of mothers who are Hispanic
+cmale = share of male births
+unmar = share of unmarried mothers
+log_births = log number births
+pop = total population
+unemp_rate_lag1 = last year's unemployment rate
+pov_rate_lag1 = last year's poverty rate
+state_minwage_lag1 = last year's state-level minimum wage
+pct_welf_recp_lag1 = last year's percentage of population receiving welfare
+welfare_ben_4per_lag1 = last year's average welfare benefit amount for a 4-person family
+gov_dem_lag1 = governor was Democratic last year
+frac_statehouse_dem_lag1 = fraction of the State House of Representative that was Democratic last year
+pct_medicaid_lag1 = last year's percentage of population on Medicaid
+pct_wic_lag1 = last year's percentage of population on WIC
+wage_withold = universal wage withholding implemented in state/year
+new_hires = New Hires Directory implemented in state/year
+license_revoke = License revocation for non-payment implemented in state/year
+joint_custody = joint custody law implemented in state/year
+log_CS_exp_lag = log total expenditures on child support enforcement last year
+waiver = AFDC waiver implemented in state/year
+tanf = TANF implemented in state/year
+eitc = state EITC program implemented in state/year
+ftriprenatal = share of mothers with first trimester prenatal care initiation
+wtgain = average maternal weight gain during pregnancy
+dbirwt = average birth weight
+lowbirwt = share low birth weight births (<2500g)
+vlowbirwt = share very low birth weight births (<1500g)
+dgestat = average gestation length
+cld = share of mothers with any complications of labor/delivery
+abnmlcon = share of newborns with any abnormal conditions
+
+
+
+********************************************************************************************
+
+
+
+
+CPS_CSS :
+
+pwsupwgt = CPS-CSS supplement weight
+hosp_pat = years relative to IHVPE initiation (main definition)
+any_hosp_pat = IHVPE exists in state and year (main definition)
+hosp_pat2 =  years relative to IHVPE initiation (using only information on year of initiation, not month)
+any_hosp_pat2 = IHVPE exists in state and year (using only information on year of initiation, not month)
+frac_hosppat = fraction of the year that IHVPE has existed in each state and year
+maybe_hosp = "partial treatment" years (hosp_pat== -1 | hosp_pat==0)
+goodinfo = indicator for a state with good information on IHVPE initiation (see text for details)
+year = year of survey
+state = state FIPS
+child_biryear = child's birth year
+d_biryear* = set of dummies for children's birth years
+d_state* = set of dummies for state FIPS
+tt = linear time trend
+tt2 = quadratic time trend
+momage1 = mother aged <20 at time of childbirth
+momage2 = mother aged 20-24 at time of childbirth
+momage3 = mother aged 25-34 at time of childbirth
+momage4 = mother aged 35-44 at time of childbirth
+momeduc1 = mother with < high school education
+momeduc2 = mother with high school degree
+momeduc3 = mother with some college
+momeduc4 = mother with college+
+momwhite = mother is non-Hispanic white
+momblack = mother is non-Hispanic black
+momhispanic = mother is Hispanic
+ch_male = child is male
+child_age = child's age in years
+totkids = total number of kids in the household
+unemp_rate_lag1 = last year's unemployment rate
+pov_rate_lag1 = last year's poverty rate
+state_minwage_lag1 = last year's state-level minimum wage
+pct_welf_recp_lag1 = last year's percentage of population receiving welfare
+welfare_ben_4per_lag1 = last year's average welfare benefit amount for a 4-person family
+gov_dem_lag1 = governor was Democratic last year
+frac_statehouse_dem_lag1 = fraction of the State House of Representative that was Democratic last year
+pct_medicaid_lag1 = last year's percentage of population on Medicaid
+pct_wic_lag1 = last year's percentage of population on WIC
+wage_withold = universal wage withholding implemented in state/year
+new_hires = New Hires Directory implemented in state/year
+license_revoke = License revocation for non-payment implemented in state/year
+joint_custody = joint custody law implemented in state/year
+log_CS_exp_lag = log total expenditures on child support enforcement last year
+waiver = AFDC waiver implemented in state/year
+tanf = TANF implemented in state/year
+eitc = state EITC program implemented in state/year
+married = mother is married
+married_tobiodad = mother is married to child's father
+never_mar = mother is never married
+married_tonewguy = mother is married to someone other than child's father
+divorced = mother is divorced
+child_hcovpriv = child has private health insurance coverage
+child_hcovinHH = child has health insurance coverage from someone in the household
+child_hcovoutHH = child has health insurance coverage from someone outside the household
+child_medicaid = child has Medicaid coverage
+child_chip = child has CHIP/SCHIP coverage
+child_hcov = child has any health insurance coverage
+father_outsidehh = child's father is outside the household (i.e., mother is eligible for CSS supplement questions)
+dadinvolve_ind = father involvement index (constructed in the code below)
+dad_provide_any father covered any gifts, clothes, food, childcare, or medical expenses
+dad_anypay = father paid any child support last year
+dad_payall = father paid all child support that was due last year
+dad_payontime = father paid child support on time all or most of the time last year
+dad_visitation = father has court-ordered visitation rights
+dad_numdays = number of days father spent with child last year
+dad_gifts = father provided child with any gifts last year
+dad_clothes = father provided child with any clothes last year
+dad_food = father covered any of child's food expenses last year
+dad_childcare = father covered any of child's childcare expenses last year
+dad_medical = father covered any of child's medical expenses last year
+joint_leg_custody = parents have joint legal custody
+
+
+
+
+
+
+
+
+******************************************************************************************
+
+March CPS :
+
+wtsupp = March CPS supplement weight
+hosp_pat = years relative to IHVPE initiation (main definition)
+any_hosp_pat = IHVPE exists in state and year (main definition)
+hosp_pat2 =  years relative to IHVPE initiation (using only information on year of initiation, not month)
+any_hosp_pat2 = IHVPE exists in state and year (using only information on year of initiation, not month)
+frac_hosppat = fraction of the year that IHVPE has existed in each state and year
+maybe_hosp = "partial treatment" years (hosp_pat== -1 | hosp_pat==0)
+goodinfo = indicator for a state with good information on IHVPE initiation (see text for details)
+year = year of survey
+state = state FIPS
+child_biryear = child's birth year
+d_biryear* = set of dummies for children's birth years
+d_state* = set of dummies for state FIPS
+tt = linear time trend
+tt2 = quadratic time trend
+momage1 = mother aged <20 at time of childbirth
+momage2 = mother aged 20-24 at time of childbirth
+momage3 = mother aged 25-34 at time of childbirth
+momage4 = mother aged 35-44 at time of childbirth
+momeduc1 = mother with < high school education
+momeduc2 = mother with high school degree
+momeduc3 = mother with some college
+momeduc4 = mother with college+
+momwhite = mother is non-Hispanic white
+momblack = mother is non-Hispanic black
+momhispanic = mother is Hispanic
+cmale = child is male
+child_age = child's age in years
+totkids = total number of kids in the household
+unemp_rate_lag1 = last year's unemployment rate
+pov_rate_lag1 = last year's poverty rate
+state_minwage_lag1 = last year's state-level minimum wage
+pct_welf_recp_lag1 = last year's percentage of population receiving welfare
+welfare_ben_4per_lag1 = last year's average welfare benefit amount for a 4-person family
+gov_dem_lag1 = governor was Democratic last year
+frac_statehouse_dem_lag1 = fraction of the State House of Representative that was Democratic last year
+pct_medicaid_lag1 = last year's percentage of population on Medicaid
+pct_wic_lag1 = last year's percentage of population on WIC
+wage_withold = universal wage withholding implemented in state/year
+new_hires = New Hires Directory implemented in state/year
+license_revoke = License revocation for non-payment implemented in state/year
+joint_custody = joint custody law implemented in state/year
+log_CS_exp_lag = log total expenditures on child support enforcement last year
+waiver = AFDC waiver implemented in state/year
+tanf = TANF implemented in state/year
+eitc = state EITC program implemented in state/year
+somekeep = child support disregard amount: $50/month or more
+married_tobiodad = mother is married to child's father
+aftertaxinc2010 = family after-tax income last year in 2010 dollars (calculated using TAXSIM)
+log_aftertaxinc = log family after-tax income
+below_pov = household is below poverty
+pov_less150 = household is below 150% of poverty line
+welfare_inc2010 = total welfare income received last year in 2010 dollars
+welfare = any welfare income received last year
+any_work_usual = mother worked any usual hours last year
+employed = mother was employed last year
+lab_force = mother was in the labor force last year
+anyownincome = mother had any own wage income last year
+logwage = mother's log wage income last year
+uhrswork = mother's usual hours of work last year

@@ -1,0 +1,131 @@
+---
+title: "Signing Up New Fathers: Do paternity Establishment Initiatives Increase Marriage, Patental Investment, and Child Well-Being?"
+author: "Sunyoung Ji"
+cols_authors: 1
+subtitle: "Causality and Programme Evaluation"
+deadline: "01. 10. 2022"
+type: "Term Paper"
+date: "today"
+supervisor: "Prof. Martin Karlsson, Ph.D, Chair of Health Economics"
+  
+output:
+  pdf_document:
+    keep_tex: yes
+    template: template.tex
+    fig_caption: yes
+    citation_package: biblatex
+    number_sections: true
+toc: true
+lot: true
+lof: true
+graphics: true
+biblio-title: References
+fontsize: 11pt
+geometry: lmargin=2.5cm,rmargin=2.5cm,tmargin=2.5cm,bmargin=2.5cm
+biblio-files: references.bib
+classoption: a4paper
+---
+
+<!-- % Template Version 1.1 -->
+<!-- below function does some formatting for images; leave this untouched unless you know better :-) -->
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(magick)
+library(tidyverse)
+library(stargazer)
+crop <- function(im, left = 0, top = 0, right = 0, bottom = 0) {
+  d <- dim(im[[1]]); w <- d[2]; h <- d[3]
+  image_crop(im, glue::glue("{w-left-right}x{h-top-bottom}+{left}+{top}"))
+}
+```
+
+# Introduction
+
+In-hospital Voluntary Paternity Establishment (IHVPE) is implemented for children in unmarried families. The expected main effects of IHVPE was improving children's well-being and parental investments by making easy to establish paternity. It does require less costs and less time than the legal paternity establishment that includes complicated process with the court system and DNA testing. According to the author Maya Rossin-Slater (2017), IHVPE increases paternity, but decreases marriages. The effects on father involvements and child well-being is seem to close to zero or even negative value, in other words, this policy hardly achieves  its purpose. The author mentions the reason is the influence of IHVPE to parental marriages. Fathers who would get married with children's mother in the absence of IHVPE decide to be not married. Thereby, children could not be provided with private health insurance by their biological father's employees, and father would spend less time with their children and provide less support as they live separately from their children. 
+To analyse these treatments effects of IHVPE empirically, the author conduct the quasi-experimental variation in the timing of IHVPE program initiation across stats and years. The analyses of the CPS-CSS data are on the individual level with the statistical model below:
+
+$$
+
+Y_{isty} =  \beta_0 + \beta_1 * IHVPE_{sy} + \gamma'X_{isty} + \phi'C_{st} + \mu_s + \alpha_y + \delta_s * y + \epsilon_{isty}
+\qquad (1)
+$$
+for each mother i, in state s, in survey year t, with a youngest child born in year y. $Y_{isty}$is an outcome of interest, $X_{isty}$ individual maternal and chld characteristics, and coefficients $\beta_1$is a measure the effect of the existence of IHVPE in the child's state and year of birth on the $Y_{isty}$. The details of variables are in Appendix A.1. The identifying assumptions for (1) are uncorrelation between the state-year variation in the timing of IHVPE implementation and other unobserved time-varying determinants of the outcomes of interest, and common trend assumption that the treatment and comparison states would have had similar trends in outcomes of interest in the absence of IHVPE introduction.
+The result that can be derived from this author's study is very interesting. I wanted to recheck that IHVPE is not successful policy by applying a new method to the existed dataset. To replicate Rossin-Slater's study, the causal forests is desirable, first, it allows to deal with high dimensional data. CPS-CSS dataset contains total 67-dimensional space, and in each replication, the number of variables is from 28 to 29 including covariates, outcomes, cluster and treatment variables. Moreover, the causal forests provide heterogeneous treatment effects: which/How much subgroups vary treatments effects. Lastly, under some assumptions, causal forests offer a pointwise consistent estimate and accurate asymptotic variance and have asymptotically gaussian and centered sampling distribution which is informative on the satistical inference. 
+The paper proceeds as follows. Chapter 2 introduces CPS-CSS data and the use of causal forests as an empirical methods. Chapter 3 shows steps for building a replication model, main results and evaluation of the model.
+
+# Data: Current Population Survey Child Support Supplements (CPS-CSS)
+
+Rossin-Slater use the biannual March/April matched CPS-CSS to analyze the effects of IHVPE on parental marriage, birth father's involvements and child well-being. The dataset consists of 48,119 households that were surveyed both in March annual demographic file and in the monthly April CPS from 1994 to 2008. For the replication, I used the same subsets with original paper. Variable details are given in Appendix 1. 
+ 
+# Replication with Causal Forests
+
+## Introduction of the causal forests
+
+To estimate causal effects of IHVPE, I apply the causal forests which are the machine learning method that captures heterogeneous treatment effects. In the causal forests, each regression tree is created by first drawing a random subsample of the data. The individuals in the subsample are then split into subgroups ("leaves") based on covariate values, where the splits are definded by minimizing some loss function such as the root mean squar error. The process is then repeated and averaged over B trees, resulting in random forest that can be used to predict $Y_i$ for a particular covariate combination $X_i = x$.
+The estimation with the causal forests proceeds with `grf (generalized random forests)` package in R. `grf` provides non-parametric methods for heterogeneous treatment effects estimation for forest-based statistical estimation and inference (Tibshirani, et al.).
+
+## Identification starategy
+
+## Replication
+
+
+### Variables
+
+The estimation of treatment effects of IHVPE in this paper consists of 4 replications. Each replication estimates treatment effects ($W_i$) on parental marriages, children's private health insurance in all parents groups, children's private health insurance in families that do not live with child supports from biological fathers respectively. 
+
+| **Replications**    | **Treatments**                  |
+|-------------|-----------------------------------------|
+|             |                                         |
+| Rep 1 | mother who is married to child's father |
+| Rep 2 | child who has private health insurance coverage |
+| Rep 3 | child who has private health insurance coverage |
+| Rep 4 | father who covered any gifts, clothes, food, childcare, or medical expenses |
+
+It is assumed that the outcomes ($Y_i$) parents in the same state could arbitrary corelated within the a state, since the years of IHVPE initiation are vary between different states. Thus, state FIPS is assigned as a cluster ($J$) in the replication. When it comes to the covariates, it is devided into 4 groups:
+
+| **Covariates ($X_i$)**    | **Variables**                        |
+|-------------|-----------------------------------------|
+|             |                                         |
+| Households controls     | mother's age, education, race, total number of children in a household, child's genter, age   |
+| States controls     | unemployment rate, proverty rate, minimum wages, percentage of population on medicaid |
+| CS controls     | universal wage withholding, license revocation for non-payment, joint custody law, log total expenditures on child support enforcement |
+| welfare controls     | AFDC waiver, TANF, EITC |
+
+The treatment variable indicating implication of IHVPE is a dummy variable from 1 to 0.
+
+### Implecation steps
+
+#### Step 1: To estimate $\mathbb{E}[Y_i\mid X=x]$ and $\mathbb{E}[W_i\mid X=x]$
+
+I train regression forests with outcome variables and the treatment in each replications to make out-of-bag estimates of $m(x) = \mathbb{E}[Y_i\mid X=x]$ and $e(x) = \mathbb{E}[W_i\mid X=x]$. 
+ 
+
+#### Step 2: To grow a causal forest with $m(x)$ and $e(x)$ with tuning parameters
+
+I tune all possible parameters by cross-vallidation with the tuning option `tune_parameters` of `grf`.
+
+#### Step 3: To train the causal forests on all features
+
+
+#### Step 4: To train the new causal forests with important variables 
+
+Through the random forests, I check the importance of all variables, then make the selection index including only variables with bigger importance than the mean of overall importance. By training the causal forests with only important variables in low signal situations, I can eliminate features that may be confounders.
+
+#### Step 5: To estimate Average Treatment effects (ATE) of the causal forests 
+
+
+## Results
+
+Average Treatment Effects (ATE)
+
+
+
+Conditional Average Treatment Effects (CATE)
+
+## Model Evaluation
+
+# Conclusion \label{chap:conc}
+
+Your conclusion. Note that you may also refer to a specific chapter or section in the document, provided there is a label. We have anchored a label to the section header of the Conclusion. You may reference it as follow: See Chapter \ref{chap:conc}.
+
